@@ -21,6 +21,8 @@ router.post('/signup', async (req, res) => {
 
   user = await User.create({ email, password });
 
+  req.session.email = email;
+
   return res.redirect('/dashboard');
 });
 
