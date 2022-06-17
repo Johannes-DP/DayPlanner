@@ -1,8 +1,26 @@
 let src = document.getElementById("testing");
 let text = document.createElement("p");
-text.innerText("Testing");
+text.innerText = "Testing";
 src.append(text);
 
+
+let cart = document.createElement("p");
+let label = document.createElement("label");
+label.append("Language: ");
+let select = document.createElement("select");
+     
+let quantity = [1,2,3,4,5];
+
+for (let element of quantity){
+    let option = document.createElement("option");
+    option.setAttribute('value', element);
+    option.append(element);
+    select.append(option);
+}
+label.append(select);
+    
+cart.append(label);
+src.append(cart);
 
 /*async function postData(url = '', data = {}) {
     // Default options are marked with *
