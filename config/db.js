@@ -4,14 +4,14 @@ const logger = require('./logger');
 
 const URI = process.env.DB_CONNECTION;
 mongoose.connect(URI, {
-    useNewUrlParser: true, 
-    useUnifiedTopology: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 })
   .then((data) => {
-    logger.info('Successfully connected to DB ' + data);
+    logger.info(`Successfully connected to DB ${data}`);
   })
-  .catch((err) => {
-    logger.error(err);
+  .catch((error) => {
+    logger.error(error.message);
   });
 
 const db = mongoose.connection.once('open', () => {
@@ -19,6 +19,15 @@ const db = mongoose.connection.once('open', () => {
 });
 
 // Bind connection to error event (to get notification of connection errors)
-db.on('error', (err) => logger.error('MongoDB connection error: ', err));
+db.on('error', (error) => logger.error('MongoDB connection error: ', error));
+
+db.on('disconnected', () => logger.info('Mongoose default connection disconnected'));
+
+process.on('SIGINT', () => {
+  db.close(() => {
+    logger.info('Mongoose default connection disconnected through app termination');
+    process.exit(0);
+  });
+});
 
 module.exports = db;

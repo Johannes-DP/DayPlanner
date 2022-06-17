@@ -1,6 +1,8 @@
+/* eslint-disable func-names */
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
-const userSchema = mongoose.Schema({
+const User = mongoose.Schema({
   email: {
     type: String,
     required: true,
@@ -11,8 +13,19 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
     max: 1024,
-    min: 8
-    }
+    min: 8,
+  },
 });
 
-module.exports = mongoose.model('User', userSchema);
+User.pre('save', async function (next) {
+  this.password = await bcrypt.hash(this.password, 10);
+  next();
+});
+
+User.methods.isValidPassword = async function (password) {
+  const user = this;
+  const isValid = await bcrypt.compare(password, user.password);
+  return isValid;
+};
+
+module.exports = mongoose.model('User', User);
