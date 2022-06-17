@@ -41,22 +41,20 @@ const options = {
 };
 router.post('/translate', async (req, res) => {
 
-    const sourceLanguage = req.body.sourceLanguage;
-    const targetLanguage = req.body.targetLanguage;
-    const text = req.body.text;
+    const {sourceLanguage, targetLanguage, text} = req.body;
 
-    if (!sourceLanguage || !targetLanguage){
+    if (!sourceLanguage || !targetLanguage|| !text){
         return res.status(422).send("Parameters missing");
     } 
     
     encodedParams.append("source_language", sourceLanguage);
     encodedParams.append("target_language", targetLanguage);
     encodedParams.append("text", text);
-    axios.request(options).then(function (response) {
-        console.log(response.data);
+
+    axios.request(options).then((response) => { 
         res.json(response.data);
-    }).catch(function (error) {
-        console.error(error);
+    }).catch((error) => {
+        logger.error(error);
     });
 })
 
