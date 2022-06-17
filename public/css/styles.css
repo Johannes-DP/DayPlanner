@@ -221,3 +221,7 @@ p {
 .social-icon {
  padding: 20px 10px;
 }
+
+#subject{
+    resize: none;
+}
