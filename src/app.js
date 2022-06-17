@@ -11,10 +11,11 @@ const app = express();
 
 // routes
 const auth = require('../routes/auth');
+const translator = require('../routes/translator');
 
 // middleware
 app.enable("trust proxy");
-app.use(express.static(path.join(__dirname, '../public')));
+app.use('/',express.static('public'));
 app.use(helmet());
 app.use(compression());
 app.use(morgan(':remote-addr :remote-user :method :url :status :response-time ms - :res[content-length]'));
@@ -29,6 +30,7 @@ app.get('/', (req, res) => {
 
 
 app.use('/user', auth);
+app.use('/translator', translator);
 
 
 app.use((req, res) => {
