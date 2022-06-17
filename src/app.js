@@ -47,11 +47,9 @@ app.use(favicon(path.join(__dirname, '../public/images/favicon.ico')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-  res.status(200).json({ status: 200, message: 'alphabot' });
-});
+app.use(userNavigation);
+app.use('/api', routes);
 
-app.use('/', express.static('files'));
 
 app.use((request, res) => {
   res.status(404).json({ status: 404, message: `Unknown Request: ${request.method} ${request.originalUrl}` });
