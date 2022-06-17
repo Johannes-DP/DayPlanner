@@ -27,8 +27,7 @@ app.get('/', (req, res) => {
   res.status(200).json({ status: 200, message: 'alphabot' });
 });
 
-
-app.use('/user', auth);
+app.use('/', express.static('files'));
 
 
 app.use((req, res) => {
