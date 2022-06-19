@@ -40,4 +40,10 @@ router.post('/login', async (req, res) => {
   return res.redirect('/dashboard');
 });
 
+router.delete('/delete', async(req,res) => {
+  User.findOneAndRemove({email});
+  req.consolelog("Deleted");
+  return res.redirect('/')
+});
+
 module.exports = router;

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    
+</head>
+<body>
+        <!-- Font Awesome -->
+        <script src="https://kit.fontawesome.com/d5f998a347.js" crossorigin="anonymous"></script>
+    <div class="wrapper">
+        <div class="sidebar">
+            <h2>DayPlanner</h2>
+            <ul>
+                <li><a href="dashboard.html"><i class="fas fa-home"></i>Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-user"></i>Profile</a></li>
+                <li><a href="writing.html"><i class="fa-solid fa-pen-to-square"></i> Writing</a></li>
+                <li><a href="stocks.html"><i class="fa-solid fa-arrow-trend-up"></i> Stonks</a></li>
+                <li><a href="cooking.html"><i class="fa-solid fa-utensils"></i> Cooking</a></li>
+                <li><a href="#"><i class="fa-solid fa-question"></i> Support</a></li>
+                <li><a href="index.html"><i class="fa-solid fa-home"></i> Go Back</a></li>
+            </ul> 
+            <div class="social_media">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="main_content">
+            <div class="header">Profil</div>  
+            <div class="info">
+            <p id="email">HIER SOLLTE IHRE VERFICKTE EMAIL AUS DER SESSION STEHEN! </p>
+            <p id="password"><button>Passwort ändern</button></p>
+            <form action="/api/user/delete" method="delete">
+                <button type="submit">Profil Löschen</button>
+            </form>
+
+            </div>
+        </div>
+    </div>
+    <script src="profile.js"></script>
+</body>
+</html>
