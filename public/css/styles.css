@@ -222,7 +222,12 @@ p {
  padding: 20px 10px;
 }
 
+
 #togglePassword{
     margin-left: -30px;
     cursor: pointer;
+}
+
+#subject{
+    resize: none;
 }

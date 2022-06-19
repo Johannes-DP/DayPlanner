@@ -23,7 +23,7 @@ button.addEventListener("click", () =>{
 change.append(form);
 
 showPassword();
-});
+
 
 
 let login = document.getElementById("link");
