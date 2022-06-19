@@ -15,7 +15,7 @@ const app = express();
 // Routes
 const routes = require('../routes/api');
 const userNavigation = require('../routes/userNavigation');
-const auth = require('../routes/auth');
+const auth = require('../routes/api/auth');
 const translator = require('../routes/translator');
 const recipe = require('../routes/recipe');
 
