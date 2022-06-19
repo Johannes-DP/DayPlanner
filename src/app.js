@@ -38,8 +38,6 @@ app.use(
   }),
 );
 app.use(express.static(path.join(__dirname, '../public')));
-
-
 app.use(compression());
 app.use(cookieParser());
 app.use(morgan(':remote-addr :remote-user :method :url :status :response-time ms - :res[content-length]'));
@@ -50,12 +48,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(userNavigation);
 app.use('/api', routes);
-
-app.use((request, res) => {
-  res.status(404).json({ status: 404, message: `Unknown Request: ${request.method} ${request.originalUrl}` });
-});
-
-
 
 app.use('/user', auth);
 app.use('/translator', translator);
