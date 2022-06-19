@@ -1,5 +1,4 @@
 const express = require('express');
-const logger = require('../../config/logger');
 const { userObjectValidation } = require('../../helpers/validation');
 const User = require('../../models/User');
 

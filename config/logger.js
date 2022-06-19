@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 const { createLogger, format, transports } = require('winston');
 
 const {
@@ -44,7 +45,7 @@ logger.add(
   }),
 );
 
-if (process.env.NODE_ENV === 'test') {
+if (process.env.NODE_ENV === 'production') {
   console.log = () => {};
 }
 
