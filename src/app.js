@@ -1,3 +1,4 @@
+require('dotenv');
 const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
@@ -12,6 +13,7 @@ const app = express();
 // routes
 const auth = require('../routes/auth');
 const translator = require('../routes/translator');
+const recipe = require('../routes/recipe');
 
 // middleware
 app.enable("trust proxy");
@@ -31,6 +33,7 @@ app.get('/', (req, res) => {
 
 app.use('/user', auth);
 app.use('/translator', translator);
+app.use('/recipe', recipe);
 
 
 app.use((req, res) => {
