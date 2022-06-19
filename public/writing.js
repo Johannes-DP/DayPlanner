@@ -73,7 +73,9 @@ form.append(div2);
 let submitButton = document.createElement("input");
 submitButton.setAttribute('type', "submit");
 submitButton.setAttribute('value', "Translate");
+let test = document.createElement("p");
 
+form.append(test);
 form.append(submitButton);
 
 

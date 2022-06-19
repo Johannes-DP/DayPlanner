@@ -6,14 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="css/dashboard.css">
-    <script src="writing.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+
 </head>
 <body>
         <!-- Font Awesome -->
         <script src="https://kit.fontawesome.com/d5f998a347.js" crossorigin="anonymous"></script>
     <div class="wrapper">
         <div class="sidebar">
-            <h2>DayPlanner</h2>
+            <h2>Dayplanner</h2>
             <ul>
                 <li><a href="dashboard.html"><i class="fas fa-home"></i>Dashboard</a></li>
                 <li><a href="/profile.html"><i class="fas fa-user"></i>Profile</a></li>
@@ -31,42 +36,19 @@
           </div>
         </div>
         <div class="main_content">
-            <div class="header">Dashboard</div>  
-            <div class="info">
-                <a class="weatherwidget-io" href="https://forecast7.com/en/48d2116d37/vienna/" data-label_1="VIENNA" data-label_2="WEATHER" data-theme="original" >VIENNA WEATHER</a>
-                <script>
-                !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-                </script>
+            <div class="header">Cooking</div>  
+                <div class="info">
+                    <p id = "content_start" ></p>
 
-                <div style="display: flex;">
-                    <img class="calender" src="images/calender.png" alt="">
-                    <div class="tradingview-widget-container">
-                        <div id="tradingview_14ec5"></div>
-                        <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank">
-                        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-                        <script type="text/javascript">
-                        new TradingView.widget(
-                        {
-                        "width": 900,
-                        "height": 600,
-                        "symbol": "NASDAQ:AAPL",
-                        "interval": "D",
-                        "timezone": "Etc/UTC",
-                        "theme": "dark",
-                        "style": "1",
-                        "locale": "en",
-                        "toolbar_bg": "#f1f3f6",
-                        "enable_publishing": false,
-                        "allow_symbol_change": true,
-                        "container_id": "tradingview_14ec5"
-                      }
-                        );
-                        </script>
-                      </div>
+                    <div class="accordion" id="recipeAccordion">
+        
                 </div>
-
-            </div>
         </div>
     </div>
+    <script src="cooking.js"></script>
+    <!-- Bootstrap Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 </body>
 </html>

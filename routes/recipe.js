@@ -8,27 +8,27 @@ const router = express.Router();
 const encodedParams = new URLSearchParams();
 const options = {
   method: 'GET',
-  url: 'https://recipesapi2.p.rapidapi.com/recipes/Lasagne',
-  params: {maxRecipes: '2'},
+  url: 'https://recipesapi2.p.rapidapi.com/recipes/',
+  params: {maxRecipes: '10'},
   headers: {
     'X-RapidAPI-Key': process.env.RAPID_API_KEY,
     'X-RapidAPI-Host': 'recipesapi2.p.rapidapi.com'
   }
 };
 
-router.get('/getRecipes', async (req, res) => {
-    /*const dish = req.body;
+router.post('/getRecipes', async (req, res) => {
+    const {dish} = req.body;
     if (!dish){
         return res.status(422).send("Parameter missing");
     }
-
-    encodedParams.append(dish);
-    */
+    options.url += dish;
+    
     axios.request(options).then((response) => {
         res.json(response.data);
     }).catch((error)  => {
         logger.error(error);
     });
+    options.url -= dish;
 
 })
 
