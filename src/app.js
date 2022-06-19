@@ -1,3 +1,4 @@
+require('dotenv');
 const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
@@ -14,6 +15,9 @@ const app = express();
 // Routes
 const routes = require('../routes/api');
 const userNavigation = require('../routes/userNavigation');
+const auth = require('../routes/auth');
+const translator = require('../routes/translator');
+const recipe = require('../routes/recipe');
 
 // session middleware
 app.use(
@@ -34,6 +38,8 @@ app.use(
   }),
 );
 app.use(express.static(path.join(__dirname, '../public')));
+
+
 app.use(compression());
 app.use(cookieParser());
 app.use(morgan(':remote-addr :remote-user :method :url :status :response-time ms - :res[content-length]'));
@@ -47,6 +53,17 @@ app.use('/api', routes);
 
 app.use((request, res) => {
   res.status(404).json({ status: 404, message: `Unknown Request: ${request.method} ${request.originalUrl}` });
+});
+
+
+
+app.use('/user', auth);
+app.use('/translator', translator);
+app.use('/recipe', recipe);
+
+
+app.use((req, res) => {
+  res.status(404).json({status: 404, message: `Unknown Request: ${req.method} ${req.originalUrl}`});
 });
 
 module.exports = app;
