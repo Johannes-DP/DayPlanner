@@ -10,6 +10,7 @@
     "parserOptions": {
         "ecmaVersion": "latest"
     },
+    "ignorePatterns": ["public/*.js"],
     "rules": {
         "linebreak-style": "off"
     }

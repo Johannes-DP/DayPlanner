@@ -9,6 +9,7 @@ const session = require('express-session');
 const path = require('path');
 
 const { bucketRateLimiter } = require('../middleware/rateLimiter');
+const { contentNegotiator } = require('../helpers/content-negotiator');
 
 const app = express();
 
@@ -26,7 +27,7 @@ app.use(
     key: 'user_id',
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: { maxAge: 60 * 60 * 1000 }, // 1 hour
   }),
 );
@@ -46,6 +47,7 @@ app.use(bucketRateLimiter);
 app.use(favicon(path.join(__dirname, '../public/images/favicon.ico')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(contentNegotiator);
 
 app.use(userNavigation);
 app.use('/api', routes);
@@ -53,11 +55,10 @@ app.use('/api', routes);
 app.use('/user', auth);
 app.use('/translator', translator);
 app.use('/recipe', recipe);
-app.use('/weather', weather)
-
+app.use('/weather', weather);
 
 app.use((req, res) => {
-  res.status(404).json({status: 404, message: `Unknown Request: ${req.method} ${req.originalUrl}`});
+  res.status(404).json({ status: 404, message: `Unknown Request: ${req.method} ${req.originalUrl}` });
 });
 
 module.exports = app;

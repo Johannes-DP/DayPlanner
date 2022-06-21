@@ -7,9 +7,13 @@
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix . && prettier --write",
-    "prepare": "husky install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint:fix": "eslint --fix .",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.js": [
+      "npx eslint --fix"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -32,7 +36,8 @@
     "rate-limiter-flexible": "^2.3.7",
     "serve-favicon": "^2.5.0",
     "winston": "^3.7.2",
-    "winston-daily-rotate-file": "^4.7.1"
+    "winston-daily-rotate-file": "^4.7.1",
+    "xml": "^1.0.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
@@ -40,6 +45,7 @@
     "eslint": "^8.17.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
-    "husky": "^8.0.1"
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.2"
   }
 }
