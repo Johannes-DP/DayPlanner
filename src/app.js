@@ -47,15 +47,14 @@ app.use(bucketRateLimiter);
 app.use(favicon(path.join(__dirname, '../public/images/favicon.ico')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(contentNegotiator);
 
 app.use(userNavigation);
-app.use('/api', routes);
+app.use('/api', contentNegotiator, routes);
 
-app.use('/user', auth);
-app.use('/translator', translator);
-app.use('/recipe', recipe);
-app.use('/weather', weather);
+app.use('/user', contentNegotiator, auth);
+app.use('/translator', contentNegotiator, translator);
+app.use('/recipe', contentNegotiator, recipe);
+app.use('/weather', contentNegotiator, weather);
 
 app.use((req, res) => {
   res.status(404).json({ status: 404, message: `Unknown Request: ${req.method} ${req.originalUrl}` });
