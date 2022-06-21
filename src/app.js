@@ -14,12 +14,8 @@ const { contentNegotiator } = require('../helpers/content-negotiator');
 const app = express();
 
 // Routes
-const routes = require('../routes/api');
+const apiRoutes = require('../routes/api');
 const userNavigation = require('../routes/userNavigation');
-const auth = require('../routes/api/auth');
-const translator = require('../routes/translator');
-const recipe = require('../routes/recipe');
-const weather = require('../routes/weather');
 
 // session middleware
 app.use(
@@ -49,12 +45,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(userNavigation);
-app.use('/api', contentNegotiator, routes);
-
-app.use('/user', contentNegotiator, auth);
-app.use('/translator', contentNegotiator, translator);
-app.use('/recipe', contentNegotiator, recipe);
-app.use('/weather', contentNegotiator, weather);
+app.use('/api', contentNegotiator, apiRoutes);
 
 app.use((req, res) => {
   res.status(404).json({ status: 404, message: `Unknown Request: ${req.method} ${req.originalUrl}` });

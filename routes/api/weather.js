@@ -1,7 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 
-const logger = require('../config/logger');
+const logger = require('../../config/logger');
 
 const router = express.Router();
 
