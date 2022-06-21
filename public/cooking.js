@@ -94,7 +94,7 @@ function getRecipes(event) {
     let recipeJson = JSON.stringify({dish: dish.value});
   
     (async () => {
-      const rawResponse = await fetch('http://localhost:3000/recipe/getRecipes', {
+      const rawResponse = await fetch('http://localhost:3000/api/recipe/getRecipes', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',

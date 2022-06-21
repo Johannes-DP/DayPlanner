@@ -17,7 +17,7 @@ labelOtherLanguage.append("Other Language: ");
 let selectOtherLanguage = document.createElement("select");
 selectOtherLanguage.setAttribute('id', "selectOtherLanguage");
 
-fetch("http://localhost:3000/translator/getLanguages")
+fetch("http://localhost:3000/api/translator/getLanguages")
         .then(res => res.json())
         .then(data => data.data.languages)   
         .then(languages => {
@@ -97,7 +97,7 @@ function translation(event) {
   let translationjson = JSON.stringify({sourceLanguage: myLang.value, targetLanguage: otherLang.value, text: translationText.value});
 
   (async () => {
-    const rawResponse = await fetch('http://localhost:3000/translator/translate', {
+    const rawResponse = await fetch('http://localhost:3000/api/translator/translate', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
