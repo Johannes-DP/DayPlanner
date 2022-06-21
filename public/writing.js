@@ -17,7 +17,7 @@ selectOtherLanguage.setAttribute('id', 'selectOtherLanguage');
 
 fetch('http://localhost:3000/api/translator/getLanguages')
   .then((res) => res.json())
-  .then((data) => data.data.languages)
+  .then((data) => data.languages)
   .then((languages) => {
     for (const language of languages) {
       const option = document.createElement('option');
