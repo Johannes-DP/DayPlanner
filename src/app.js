@@ -18,6 +18,7 @@ const userNavigation = require('../routes/userNavigation');
 const auth = require('../routes/api/auth');
 const translator = require('../routes/translator');
 const recipe = require('../routes/recipe');
+const weather = require('../routes/weather');
 
 // session middleware
 app.use(
@@ -52,6 +53,7 @@ app.use('/api', routes);
 app.use('/user', auth);
 app.use('/translator', translator);
 app.use('/recipe', recipe);
+app.use('/weather', weather)
 
 
 app.use((req, res) => {
