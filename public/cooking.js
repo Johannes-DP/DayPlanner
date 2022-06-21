@@ -46,7 +46,6 @@ function createAccordion(index, recipe){
     
      let divBody = document.createElement("div");
      divBody.setAttribute('class', "accordion-body");
-     //divBody.innerText = "Hallo"
     const keysToIgnore = ["name", "tags", "image"];
     const specialFields = ["nutrients", "time"] ;
     const arrayFields = ["ingredients", "instructions"]
