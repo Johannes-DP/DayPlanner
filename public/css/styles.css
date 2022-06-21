@@ -387,3 +387,13 @@ p {
 .social-icon {
  padding: 20px 10px;
 }
+
+
+#togglePassword{
+    margin-left: -30px;
+    cursor: pointer;
+}
+
+.div1 {
+    padding-right: 25px;
+}
