@@ -1,4 +1,5 @@
 const express = require('express');
+const { session } = require('passport');
 const logger = require('../../config/logger');
 const { userObjectValidation } = require('../../helpers/validation');
 const User = require('../../models/User');
@@ -40,10 +41,10 @@ router.post('/login', async (req, res) => {
   return res.redirect('/dashboard');
 });
 
-router.delete('/delete', async(req,res) => {
-  User.findOneAndRemove({email});
-  req.consolelog("Deleted");
-  return res.redirect('/')
+router.post('/delete', async(req,res) => {
+  const{mail} = req.body;
+  User.findOneAndDelete({email:{mail}});
+  //return res.redirect('/')
 });
 
 module.exports = router;

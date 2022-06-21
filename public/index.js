@@ -8,6 +8,7 @@ button.addEventListener("click", () =>{
 
             let form = document.createElement("form");
             form.setAttribute("action","api/user/signup");
+            form.setAttribute("onsubmit" ,"storeEmail()");
             form.setAttribute("method","post");
 
             form.innerHTML = 
@@ -33,6 +34,7 @@ link.addEventListener("click", () =>{
 
             let form = document.createElement("form");
             form.setAttribute("action","api/user/login");
+            form.setAttribute("onsubmit" ,"storeEmail()");
             form.setAttribute("method","post");
 
             form.innerHTML =
@@ -59,4 +61,11 @@ function showPassword(){
                 password.setAttribute("type",type);
                 this.classList.toggle("bi-eye");
             });   
+}
+
+function storeEmail(){
+
+var email = document.getElementById("email").value;
+console.log(email);
+sessionStorage.setItem("email",email);
 }
