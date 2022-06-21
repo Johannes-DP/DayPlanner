@@ -41,18 +41,4 @@ router.post('/login', async (req, res) => {
   return res.redirect('/dashboard');
 });
 
-router.delete('/delete/:email', async (req) => {
-  const { email } = req.params;
-  await User.findOneAndDelete({ email });
-  req.session.destroy();
-});
-
-router.put('/change', async (req, res) => {
-  const { email, changedEmail } = req.body;
-  await User.findOneAndUpdate({ email }, { email: changedEmail }, { new: true });
-  req.session.email = changedEmail;
-
-  return res.redirect('/profile');
-});
-
 module.exports = router;

@@ -1,4 +1,3 @@
-require('dotenv');
 const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
@@ -14,7 +13,7 @@ const { contentNegotiator } = require('../helpers/content-negotiator');
 const app = express();
 
 // Routes
-const apiRoutes = require('../routes/api');
+const routes = require('../routes/api');
 const userNavigation = require('../routes/userNavigation');
 
 // session middleware
@@ -43,12 +42,13 @@ app.use(bucketRateLimiter);
 app.use(favicon(path.join(__dirname, '../public/images/favicon.ico')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(contentNegotiator);
 
 app.use(userNavigation);
-app.use('/api', contentNegotiator, apiRoutes);
+app.use('/api', routes);
 
-app.use((req, res) => {
-  res.status(404).json({ status: 404, message: `Unknown Request: ${req.method} ${req.originalUrl}` });
+app.use((request, res) => {
+  res.status(404).json({ status: 404, message: `Unknown Request: ${request.method} ${request.originalUrl}` });
 });
 
 module.exports = app;
