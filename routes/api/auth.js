@@ -41,10 +41,18 @@ router.post('/login', async (req, res) => {
   return res.redirect('/dashboard');
 });
 
-router.post('/delete', async(req,res) => {
-  const{mail} = req.body;
-  User.findOneAndDelete({email:{mail}});
-  //return res.redirect('/')
+router.delete('/delete/:email', async(req,res) => {
+let {email} = req.params;
+await User.findOneAndDelete({email});
+req.session.destroy();
 });
+
+router.put('/change',async(req,res)=>{
+  let { email, changedEmail } = req.body
+  let doc = await User.findOneAndUpdate({email}, {email: changedEmail}, {new: true});
+  req.session.email = changedEmail;
+  
+return res.redirect('/profile')
+})
 
 module.exports = router;

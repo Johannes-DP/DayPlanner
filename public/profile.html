@@ -18,10 +18,10 @@
         <div class="sidebar">
             <h2>DayPlanner</h2>
             <ul>
-                <li><a href="dashboard.html"><i class="fas fa-home"></i>Dashboard</a></li>
-                <li><a href="profile.html"><i class="fas fa-user"></i>Profile</a></li>
-                <li><a href="writing.html"><i class="fa-solid fa-pen-to-square"></i> Writing</a></li>
-                <li><a href="cooking.html"><i class="fa-solid fa-utensils"></i> Cooking</a></li>
+                <li><a href="/dashboard"><i class="fas fa-home"></i>Dashboard</a></li>
+                <li><a href="/profile"><i class="fas fa-user"></i>Profile</a></li>
+                <li><a href="/writing"><i class="fa-solid fa-pen-to-square"></i> Writing</a></li>
+                <li><a href="/cooking"><i class="fa-solid fa-utensils"></i> Cooking</a></li>
                 <li><a href="/logout"><i class="fa-solid fa-question"></i> Logout</a></li>
                 <li><a href="index.html"><i class="fa-solid fa-home"></i> Go Back</a></li>
             </ul> 
@@ -34,13 +34,12 @@
         <div class="main_content">
             <div class="header">Profil</div>  
             <div class="info">
-            <form id="delete">
-                <lable for=email>E-Mail-Adresse: </lable>
+                <lable for=email onclick="event.stopPropagation()">E-Mail-Adresse: </lable>
                 <input class="form-control" type='text' id='email' name='email' readonly>
-                <br><button type="submit"class="btn btn-danger">Account löschen</button>
-            </form>
-
-            <br><button id="password">Passwort ändern</button>
+                <br><button class="btn btn-danger" id="delete">Account löschen</button>
+                <br><lable for="changedEmail">Änderung: </lable>
+                <input class="form-control" type='text' id="changedEmail" name="changedEmail">
+                <br><button class="btn" id="change">Email ändern</button>
 
             </div>
         </div>
