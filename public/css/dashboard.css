@@ -273,3 +273,11 @@ label.fcf-label {
 input[type="submit"].fcf-btn-block, input[type="reset"].fcf-btn-block, input[type="button"].fcf-btn-block {
   width: 100%;
 }
+
+#profilePW{
+  margin-top: 2em;
+}
+
+#delete{
+  margin-bottom:2em
+}

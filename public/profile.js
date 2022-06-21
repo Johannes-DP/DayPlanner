@@ -1,4 +1,3 @@
-
 let email = window.sessionStorage.getItem("email");
 
 let anker = document.getElementById("email");
@@ -36,3 +35,20 @@ del.addEventListener("click",() =>{
     .then(window.location.href="/")
 })
  
+let changePw = document.getElementById("passwordChange");
+changePw.addEventListener("click",()=>{
+    let oldPassword = document.getElementById("password").value;
+    let newPassword = document.getElementById("newPassword").value;
+    fetch("/api/user/password",{
+        method:"PATCH",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            "email": email,
+            "oldPassword": oldPassword,
+            "newPassword": newPassword
+        })
+    })
+    .then(res=>res.json())
+    .then(data=>console.log(data))
+    .catch(err=>console.log(err))
+})
