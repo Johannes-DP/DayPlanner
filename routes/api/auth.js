@@ -55,4 +55,17 @@ router.put('/change', async (req, res) => {
   return res.redirect('/profile');
 });
 
+router.patch('/password', async (req, res) => {
+  const { email, oldPassword, newPassword } = req.body;
+
+  const user = await User.findOne({ email }).exec();
+  const validate = await user.isValidPassword(oldPassword);
+  if (!validate) return res.status(403).send(dataConverter(req, { message: 'Wrong Credentials!' }));
+
+  user.password = newPassword;
+
+  const result = await user.save();
+  return res.json(result);
+});
+
 module.exports = router;
