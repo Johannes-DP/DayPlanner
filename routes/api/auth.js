@@ -1,5 +1,7 @@
 const express = require('express');
 const { userObjectValidation } = require('../../helpers/validation');
+const { dataConverter } = require('../../helpers/content-negotiator');
+
 const User = require('../../models/User');
 
 const router = express.Router();
@@ -9,13 +11,13 @@ router.post('/signup', async (req, res) => {
   let user = await User.findOne({ email }).exec();
 
   if (user) {
-    return res.status(409).send('User with this Email already exists');
+    return res.status(409).send(dataConverter(req, { message: 'User with this Email already exists' }));
   }
 
   const { error } = userObjectValidation(req.body);
 
   if (error) {
-    return res.status(400).json(error.details[0].message);
+    return res.status(400).send(dataConverter(req, error.details[0]));
   }
 
   user = await User.create({ email, password });
@@ -29,10 +31,10 @@ router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email }).exec();
-  if (!user) return res.status(403).send('Unkown User or Password!');
+  if (!user) return res.status(403).send(dataConverter(req, { message: 'Unkown User or Password!' }));
 
   const validate = await user.isValidPassword(password);
-  if (!validate) return res.status(403).send('Wrong Credentials!');
+  if (!validate) return res.status(403).send(dataConverter(req, { message: 'Wrong Credentials!' }));
 
   req.session.email = email;
 

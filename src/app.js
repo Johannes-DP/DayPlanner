@@ -8,6 +8,7 @@ const session = require('express-session');
 const path = require('path');
 
 const { bucketRateLimiter } = require('../middleware/rateLimiter');
+const { contentNegotiator } = require('../helpers/content-negotiator');
 
 const app = express();
 
@@ -41,6 +42,7 @@ app.use(bucketRateLimiter);
 app.use(favicon(path.join(__dirname, '../public/images/favicon.ico')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(contentNegotiator);
 
 app.use(userNavigation);
 app.use('/api', routes);

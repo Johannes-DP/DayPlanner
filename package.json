@@ -11,7 +11,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint --fix"
+      "npx eslint --fix"
     ]
   },
   "keywords": [],
@@ -34,7 +34,8 @@
     "rate-limiter-flexible": "^2.3.7",
     "serve-favicon": "^2.5.0",
     "winston": "^3.7.2",
-    "winston-daily-rotate-file": "^4.7.1"
+    "winston-daily-rotate-file": "^4.7.1",
+    "xml": "^1.0.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",
