@@ -5,7 +5,7 @@ button.addEventListener('click', () => {
   change.innerHTML = '';
 
   const form = document.createElement('form');
-  form.setAttribute('action', 'api/user/signup');
+  form.setAttribute('action', 'http://localhost:3000/api/user/signup');
   form.setAttribute('onsubmit', 'storeEmail()');
   form.setAttribute('method', 'post');
 
@@ -28,7 +28,7 @@ link.addEventListener('click', () => {
   change.innerHTML = '';
 
   const form = document.createElement('form');
-  form.setAttribute('action', 'api/user/login');
+  form.setAttribute('action', 'http://localhost:3000/api/user/login');
   form.setAttribute('onsubmit', 'storeEmail()');
   form.setAttribute('method', 'post');
 

@@ -1,5 +1,6 @@
 const express = require('express');
 const axios = require('axios');
+const { dataConverter } = require('../../helpers/content-negotiator');
 
 const logger = require('../../config/logger');
 
@@ -17,7 +18,7 @@ const options = {
 
 router.get('/getWeather', async (req, res) => {
   axios.request(options).then((response) => {
-    res.json(response.data);
+    res.send(dataConverter(req, response.data));
   }).catch((error) => {
     logger.error(error);
   });

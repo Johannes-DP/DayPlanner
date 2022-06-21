@@ -1,9 +1,25 @@
-let email = window.sessionStorage.getItem("email");
+const email = window.sessionStorage.getItem('email');
 
-let anker = document.getElementById("email");
-anker.setAttribute("value",email);
+const anker = document.getElementById('email');
+anker.setAttribute('value', email);
 
-let change = document.getElementById("change");
+const change = document.getElementById('change');
+
+change.addEventListener('click', () => {
+  const changedEmail = document.getElementById('changedEmail').value;
+  fetch('/api/user/change', {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      email,
+      changedEmail,
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+    .then(window.sessionStorage.setItem('email', changedEmail))
+    .catch((err) => console.log(err));
+});
 
 change.addEventListener("click",()=>{
 let changedEmail = document.getElementById("changedEmail").value;

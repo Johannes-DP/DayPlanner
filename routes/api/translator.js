@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 const express = require('express');
 const axios = require('axios');
+const { dataConverter } = require('../../helpers/content-negotiator');
 
 const logger = require('../../config/logger');
 
@@ -23,7 +24,7 @@ router.post('/translate', async (req, res) => {
   const { sourceLanguage, targetLanguage, text } = req.body;
 
   if (!sourceLanguage || !targetLanguage || !text) {
-    return res.status(422).send('Parameters missing');
+    return res.status(422).send(dataConverter(req, { message: 'Parameters missing' }));
   }
 
   encodedParams.append('source_language', sourceLanguage);
@@ -31,7 +32,7 @@ router.post('/translate', async (req, res) => {
   encodedParams.append('text', text);
 
   axios.request(optionsPost).then((response) => {
-    res.json(response.data);
+    res.send(dataConverter(req, response.data));
   }).catch((error) => {
     logger.error(error);
   });
@@ -48,7 +49,7 @@ const optionsGet = {
 
 router.get('/getLanguages', async (req, res) => {
   axios.request(optionsGet).then((response) => {
-    res.json(response.data);
+    res.send(dataConverter(req, response.data.data));
   }).catch((error) => {
     logger.error(error);
   });

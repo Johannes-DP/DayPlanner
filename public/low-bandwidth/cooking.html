@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+</head>
+<body>
+    
+    <div class="wrapper">
+        <div class="sidebar">
+            <h2>Dayplanner</h2>
+            <ul>
+                <li><a href="/dashboard"><i class="fas fa-home"></i>Dashboard</a></li>
+                <li><a href="/profile"><i class="fas fa-user"></i>Profile</a></li>
+                <li><a href="/writing"><i class="fa-solid fa-pen-to-square"></i> Writing</a></li>
+                <li><a href="/cooking"><i class="fa-solid fa-utensils"></i> Cooking</a></li>
+                <li><a href="/logout"><i class="fa-solid fa-question"></i> Logout</a></li>
+                <li><a href="index.html"><i class="fa-solid fa-home"></i> Go Back</a></li>
+
+            </ul> 
+            <div class="social_media">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="main_content">
+            <div class="header">Cooking</div>  
+                <div class="info">
+                    <p id = "content_start" ></p>
+
+                    <div class="accordion" id="recipeAccordion">
+                    </div>
+        
+                </div>
+        </div>
+    </div>
+    <script src="cooking.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-const xml = require('xml');
+const xml = require('xml-js');
 
 const contentNegotiator = (req, res, next) => {
   if (req.accepts('xml') && !req.accepts('json')) {
@@ -11,7 +11,8 @@ const contentNegotiator = (req, res, next) => {
 const dataConverter = (req, data) => {
   let convertedData = data;
   if (req.accepts('xml') && !req.accepts('json')) {
-    convertedData = xml(data, true);
+    const options = { compact: true, ignoreComment: true, spaces: 4 };
+    convertedData = xml.json2xml(data, options);
   } else {
     convertedData = JSON.stringify(data);
   }

@@ -32,6 +32,11 @@ fetch('http://localhost:3000/api/weather/getWeather')
 // });
 
 function setParams(data) {
+  console.log(data[0].weather.description);
+  console.log(data);
+  console.log(data[0].temp);
+  console.log(data[0].sunrise);
+  console.log(data[0].sunset);
   temperature.innerText += ` ${data[0].temp}°C`;
   img.src = `/icons/${data[0].weather.icon}.png`;
   description.innerText = data[0].weather.description;

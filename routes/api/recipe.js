@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 const express = require('express');
 const axios = require('axios');
+const { dataConverter } = require('../../helpers/content-negotiator');
 
 const logger = require('../../config/logger');
 
@@ -19,12 +20,12 @@ const options = {
 router.post('/getRecipes', async (req, res) => {
   const { dish } = req.body;
   if (!dish) {
-    return res.status(422).send('Parameter missing');
+    return res.status(422).send(dataConverter(req, { message: 'Parameters missing' }));
   }
   options.url += dish;
 
   axios.request(options).then((response) => {
-    res.json(response.data);
+    res.send(dataConverter(req, response.data));
   }).catch((error) => {
     logger.error(error);
   });
