@@ -73,6 +73,7 @@ form.append(div2);
 let submitButton = document.createElement("input");
 submitButton.setAttribute('type', "submit");
 submitButton.setAttribute('value', "Translate");
+submitButton.classList.add("btn","btn-outline-primary");
 let test = document.createElement("p");
 
 form.append(test);
