@@ -15,8 +15,8 @@ button.addEventListener('click', () => {
                 + '<br><p class = form-control><lable for=password>Passwort: </lable>'
                 + "<input value type='password' id='password' name='password' required>"
                 + "<i class='bi bi-eye-slash' id='togglePassword'></i></p>"
-                + "<button type='reset' value='reset' >Löschen</button>"
-                + "<button type='submit'>Bestätigen</button>";
+                + "<button type='reset' value='reset' class='btn btn-danger' >Löschen</button>"
+                + "<button type='submit' class='btn btn-primary'>Bestätigen</button>";
 
   change.append(form);
 
@@ -38,7 +38,7 @@ link.addEventListener('click', () => {
             + '<p class = form-control><lable for=password>Passwort: </lable>'
             + "<input type='password' id='password' name='password' required>"
             + "<i class='bi bi-eye-slash' id='togglePassword'></i></p>"
-            + "<button type='submit' value='submit' name='login'>Absenden</button>";
+            + "<button type='submit' value='submit' class='btn btn-primary' name='login'>Absenden</button>";
 
   change.append(form);
 
