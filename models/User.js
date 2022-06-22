@@ -13,7 +13,7 @@ const User = mongoose.Schema({
     type: String,
     required: true,
     max: 1024,
-    min: 8,
+    min: 4,
   },
 });
 
