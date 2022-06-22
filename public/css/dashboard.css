@@ -317,10 +317,39 @@ input[type="submit"].fcf-btn-block, input[type="reset"].fcf-btn-block, input[typ
   }
   .wrapper.sidebar.active h2{
     display: block;
-  }
+  }  
 }
 @media screen and (max-width:720px) {
   .wrapper .sidebar{
-    width: 167px;
+    width: 75px;
+    padding: 0px 0px;
+  }
+
+  .wrapper .sidebar h2{
+    display: none;
+  }
+
+  .wrapper .sidebar li{
+    display: none;
+  }
+
+  #li_1{
+    display: block;
+  }
+
+  .wrapper .sidebar.active li{
+    display: block;
+  }
+
+  .wrapper .sidebar .social_media{
+    display: none;
+  }
+
+  .wrapper .main_content{
+    margin-left: 80px;
+  }
+  
+  .calender{
+    width: 100%;
   }
 }

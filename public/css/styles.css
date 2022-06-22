@@ -213,6 +213,9 @@ p {
 
     .highlighted {
         background: none;
+        max-width: 310px;
+        font-size:x-large;
+
     }
 
     .landing-page-image {
@@ -220,6 +223,18 @@ p {
         width: 50%;
         margin: auto;
         transform: rotate(0deg);
+    }
+
+    .big-heading{
+        font-size:x-large;
+    }
+    
+    .testimonial-text{
+        font-size: larger;
+    }
+
+    input{
+        width: 80%;
     }
 }
 
