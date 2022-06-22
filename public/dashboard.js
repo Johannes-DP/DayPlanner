@@ -19,17 +19,9 @@ const description = document.createElement('p');
 
 const img = document.createElement('img');
 
-//fetch('http://localhost:3000/api/weather/getWeather')
-//.then((res) => res.json())
-//.then((data) => setParams(data.data));
-// .then(data => data.data)
-// .then(console.log(data.data))//{
-//    temperature.innerText += data.temp;
-//    sunrise.innerText += data.sunrise;
-//    sunset.innerText += data.sunset;
-//   img.src = '/icons/' +data.weather.icon +'.png'
-//   description.innerText = data.weather.description;
-// });
+fetch('http://localhost:3000/api/weather/getWeather')
+.then((res) => res.json())
+.then((data) => setParams(data.data));
 
 function setParams(data) {
   temperature.innerText += ` ${data[0].temp}°C`;
@@ -51,11 +43,9 @@ function setParams(data) {
   sunset.innerText += ` ${time2}`;
 }
 
-// img.append(description);
-// h2.append(description);
-/*src.appendChild(h2);
+src.appendChild(h2);
 src.append(img);
 src.append(description);
 src.appendChild(temperature);
 src.append(sunrise);
-src.append(sunset);*/
+src.append(sunset);

@@ -19,6 +19,7 @@ let changedEmail = document.getElementById("changedEmail").value;
     .then(data=>console.log(data))
     .then(window.sessionStorage.setItem("email",changedEmail))
     .catch(err=>console.log(err))
+    .then(window.location.href="/profile")
     
 })
 
@@ -51,4 +52,5 @@ changePw.addEventListener("click",()=>{
     .then(res=>res.json())
     .then(data=>console.log(data))
     .catch(err=>console.log(err))
+    .then(window.location.href="/profile");
 })
