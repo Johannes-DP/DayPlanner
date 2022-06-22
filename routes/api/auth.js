@@ -41,18 +41,19 @@ router.post('/login', async (req, res) => {
   return res.redirect('/dashboard');
 });
 
-router.delete('/delete/:email', async (req) => {
+router.delete('/delete/:email', async (req, res) => {
   const { email } = req.params;
-  await User.findOneAndDelete({ email });
+  const user = await User.findOneAndDelete({ email });
   req.session.destroy();
+  return res.send(dataConverter(req, user));
 });
 
 router.put('/change', async (req, res) => {
   const { email, changedEmail } = req.body;
-  await User.findOneAndUpdate({ email }, { email: changedEmail }, { new: true });
+  const user = await User.findOneAndUpdate({ email }, { email: changedEmail }, { new: true });
   req.session.email = changedEmail;
 
-  return res.redirect('/profile');
+  return res.send(dataConverter(req, user));
 });
 
 router.patch('/password', async (req, res) => {
@@ -65,7 +66,7 @@ router.patch('/password', async (req, res) => {
   user.password = newPassword;
 
   const result = await user.save();
-  return res.json(result);
+  return res.send(dataConverter(req, result));
 });
 
 router.post('/signupLite', async (req, res) => {
@@ -111,10 +112,22 @@ router.delete('/deleteLite/:email', async (req) => {
 
 router.put('/changeLite', async (req, res) => {
   const { email, changedEmail } = req.body;
-  await User.findOneAndUpdate({ email }, { email: changedEmail }, { new: true });
+  const user = await User.findOneAndUpdate({ email }, { email: changedEmail }, { new: true });
   req.session.email = changedEmail;
 
-  return res.redirect('/lite/profile');
+  return res.send(dataConverter(req, user));
 });
 
+router.patch('/passwordlite', async (req, res) => {
+  const { email, oldPassword, newPassword } = req.body;
+
+  const user = await User.findOne({ email }).exec();
+  const validate = await user.isValidPassword(oldPassword);
+  if (!validate) return res.status(403).send(dataConverter(req, { message: 'Wrong Credentials!' }));
+
+  user.password = newPassword;
+
+  const result = await user.save();
+  return res.send(dataConverter(req, result));
+});
 module.exports = router;

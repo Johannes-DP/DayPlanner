@@ -16,24 +16,22 @@ let changedEmail = document.getElementById("changedEmail").value;
         })  
     })
     .then(res=>res.json())
-    .then(data=>console.log(data))
     .then(window.sessionStorage.setItem("email",changedEmail))
     .catch(err=>console.log(err))
-    .then(window.location.href="/profile")
+    .then(anker.value = changedEmail)
+    .then(document.getElementById("changedEmail").value = "")
     
 })
 
 
 let del = document.getElementById("delete");
 del.addEventListener("click",() =>{
-    console.log("irgendwas");
     fetch("/api/user/delete/" + email,{
         method: "DELETE",
     })
     .then(res=>res.json())
-    .then(data=>console.log(data))
     .catch(err=>console.log(err))
-    .then(window.location.href="/")
+    .then(() => window.location.href="/")
 })
  
 let changePw = document.getElementById("passwordChange");
@@ -50,7 +48,9 @@ changePw.addEventListener("click",()=>{
         })
     })
     .then(res=>res.json())
-    .then(data=>console.log(data))
     .catch(err=>console.log(err))
-    .then(window.location.href="/profile");
+    .then(() => {
+        document.getElementById("password").value = "";
+        document.getElementById("newPassword").value = "";
+    });
 })

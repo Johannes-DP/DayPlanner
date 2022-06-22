@@ -28,12 +28,19 @@
         <div class="main_content">
             <div class="header">Profil</div>  
             <div class="info">
+                <h3>E-Mail ändern und Account deaktivieren</h3>
                     <label for=email onclick="event.stopPropagation()">E-Mail-Adresse: </label>
                     <input class="form-control" type='text' id='email' name='email' readonly>
                     <br><button class="btn btn-danger" id="delete">Account löschen</button>
                     <br><label for="changedEmail">Änderung: </label>
-                    <input class="form-control" type='text' id="changedEmail" name="changedEmail">
-                    <br><button class="btn" id="change">Email ändern</button>
+                    <br><input class="form-control" type='text' id="changedEmail" name="changedEmail">
+                    <br><button class="btn btn-primary" id="change">Email ändern</button>
+                    <h3 id="profilePW">Passwort ändern</h3>
+                    <br><label for=password>Passwort</label>
+                    <input class="form-control" type="password" id="password">
+                    <br><label for="newPassword">Neues Passwort</label>
+                    <input class="form-control" type="password" id="newPassword">
+                    <br><button class="btn btn-primary" id="passwordChange">Passwort ändern</button>
             </div>
         </div>
     </div>
