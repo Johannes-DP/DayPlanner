@@ -68,4 +68,53 @@ router.patch('/password', async (req, res) => {
   return res.json(result);
 });
 
+router.post('/signupLite', async (req, res) => {
+  const { email, password } = req.body;
+  let user = await User.findOne({ email }).exec();
+
+  if (user) {
+    return res.status(409).send(dataConverter(req, { message: 'User with this Email already exists' }));
+  }
+
+  const { error } = userObjectValidation(req.body);
+
+  if (error) {
+    return res.status(400).send(dataConverter(req, error.details[0]));
+  }
+
+  user = await User.create({ email, password });
+
+  req.session.email = email;
+
+  return res.redirect('/dashboardlite');
+});
+
+router.post('/loginLite', async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email }).exec();
+  if (!user) return res.status(403).send(dataConverter(req, { message: 'Unkown User or Password!' }));
+
+  const validate = await user.isValidPassword(password);
+  if (!validate) return res.status(403).send(dataConverter(req, { message: 'Wrong Credentials!' }));
+
+  req.session.email = email;
+
+  return res.redirect('/dashboardlite');
+});
+
+router.delete('/deleteLite/:email', async (req) => {
+  const { email } = req.params;
+  await User.findOneAndDelete({ email });
+  req.session.destroy();
+});
+
+router.put('/changeLite', async (req, res) => {
+  const { email, changedEmail } = req.body;
+  await User.findOneAndUpdate({ email }, { email: changedEmail }, { new: true });
+  req.session.email = changedEmail;
+
+  return res.redirect('/lite/profile');
+});
+
 module.exports = router;

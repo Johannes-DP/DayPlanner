@@ -7,7 +7,7 @@ const change = document.getElementById('change');
 
 change.addEventListener('click', () => {
   const changedEmail = document.getElementById('changedEmail').value;
-  fetch('/api/user/change', {
+  fetch('/api/user/changeLite', {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -21,7 +21,7 @@ change.addEventListener('click', () => {
     .catch((err) => console.log(err));
 });
 
-const del = document.getElementById('delete');
+const del = document.getElementById('deleteLite');
 del.addEventListener('click', () => {
   console.log('irgendwas');
   fetch(`/api/user/delete/${email}`, {

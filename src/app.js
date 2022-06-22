@@ -16,7 +16,7 @@ const app = express();
 // Routes
 const apiRoutes = require('../routes/api');
 const userNavigation = require('../routes/userNavigation');
-const userNavigationLow = require('../routes/userNavigationLow');
+const userNavigationLite = require('../routes/userNavigationLite');
 
 // session middleware
 app.use(
@@ -46,7 +46,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(userNavigation);
-app.use('/low', userNavigationLow);
+app.use('/lite', userNavigationLite);
 app.use('/api', contentNegotiator, apiRoutes);
 
 app.use((req, res) => {
