@@ -24,7 +24,7 @@ Install dependencies
   npm install
 ```
 
-Create `.env` file with a MongoDB connect string, a secret for your sessions and a Rapit API Key
+Create `.env` file with a MongoDB connect string, a secret for your sessions and a Rapid API Key
 ```bash
   DB_CONNECTION="YOUR_MONGODB_CONNECTION_STRING"
   SESSION_SECRET="YOUR_SECRET"
