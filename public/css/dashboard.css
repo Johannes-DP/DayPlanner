@@ -293,7 +293,21 @@ input[type="submit"].fcf-btn-block, input[type="reset"].fcf-btn-block, input[typ
 
 #delete{
   margin-bottom:2em
+
+  
 }
+
+.inline-div {
+  display:inline-block;
+  padding-right: 25px;
+  padding-top: 15px;
+  
+}
+.inline-txtarea {
+  resize: none;
+  
+}
+
 @media screen and (min-width:720px) {
   .wrapper .sidebar li#li_1{
       display: none;

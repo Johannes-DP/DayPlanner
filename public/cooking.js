@@ -9,7 +9,7 @@ textarea.setAttribute('id', 'dish');
 textarea.setAttribute('placeholder', 'Search for a dish');
 
 const submitButton = document.createElement('input');
-submitButton.classList.add('btn', 'btn-outline-primary');
+submitButton.classList.add('btn', 'btn-primary');
 submitButton.setAttribute('type', 'submit');
 submitButton.setAttribute('value', 'Search');
 
