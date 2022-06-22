@@ -10,8 +10,8 @@ router.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
-router.get('/low', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/low-bandwidth/index.html'));
+router.get('/lite', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/lite/index.html'));
 });
 
 router.get('/normal', (req, res) => {
