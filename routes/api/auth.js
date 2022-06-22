@@ -58,8 +58,11 @@ router.put('/change', async (req, res) => {
 
 router.patch('/password', async (req, res) => {
   const { email, oldPassword, newPassword } = req.body;
+  console.log(email);
 
   const user = await User.findOne({ email }).exec();
+  if (!user) return res.status(403).send(dataConverter(req, { message: 'Unkown User!' }));
+
   const validate = await user.isValidPassword(oldPassword);
   if (!validate) return res.status(403).send(dataConverter(req, { message: 'Wrong Credentials!' }));
 

@@ -7,7 +7,7 @@ const change = document.getElementById('change');
 
 change.addEventListener('click', () => {
   const changedEmail = document.getElementById('changedEmail').value;
-  fetch('/api/user/changeLite', {
+  fetch('/api/user/change', {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -19,10 +19,10 @@ change.addEventListener('click', () => {
     .then(window.sessionStorage.setItem('email', changedEmail))
     .catch((err) => console.log(err))
     .then(anker.value = changedEmail)
-    .then(document.getElementById('changedEmail').value = '');
+    .then(() => window.location.href = '/profilelite');
 });
 
-const del = document.getElementById('deleteLite');
+const del = document.getElementById('delete');
 del.addEventListener('click', () => {
   fetch(`/api/user/delete/${email}`, {
     method: 'DELETE',

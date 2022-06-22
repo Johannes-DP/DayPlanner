@@ -19,7 +19,7 @@ change.addEventListener('click', () => {
     .then(window.sessionStorage.setItem('email', changedEmail))
     .catch((err) => console.log(err))
     .then(anker.value = changedEmail)
-    .then(document.getElementById('changedEmail').value = '');
+    .then(() => window.location.href = '/profile');
 });
 
 const del = document.getElementById('delete');
@@ -36,6 +36,7 @@ const changePw = document.getElementById('passwordChange');
 changePw.addEventListener('click', () => {
   const oldPassword = document.getElementById('password').value;
   const newPassword = document.getElementById('newPassword').value;
+  const email = document.getElementById('email').value;
   fetch('/api/user/password', {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
