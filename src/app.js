@@ -30,11 +30,7 @@ app.use(
 
 // middleware
 app.enable('trust proxy');
-app.use(
-  helmet({
-    contentSecurityPolicy: false,
-  }),
-);
+app.use(helmet({ contentSecurityPolicy: false }));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(compression());
 app.use(cookieParser());

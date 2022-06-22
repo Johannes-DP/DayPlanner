@@ -111,7 +111,7 @@ router.post('/getRecipes', async (req, res) => {
   axios.request(options).then((response) => {
     res.send(dataConverter(req, response.data));
   }).catch((error) => {
-    logger.error(error);
+    logger.error(error.message);
     res.send(dataConverter(req, dummyData));
   });
   options.url -= dish;
