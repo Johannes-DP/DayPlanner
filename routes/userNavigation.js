@@ -10,6 +10,14 @@ router.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
+router.get('/low', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/low-bandwidth/index.html'));
+});
+
+router.get('/normal', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
+});
+
 router.get('/dashboard', isAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, '../public/dashboard.html'));
 });
