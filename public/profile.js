@@ -5,22 +5,6 @@ anker.setAttribute('value', email);
 
 const change = document.getElementById('change');
 
-change.addEventListener('click', () => {
-  const changedEmail = document.getElementById('changedEmail').value;
-  fetch('/api/user/change', {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      email,
-      changedEmail,
-    }),
-  })
-    .then((res) => res.json())
-    .then((data) => console.log(data))
-    .then(window.sessionStorage.setItem('email', changedEmail))
-    .catch((err) => console.log(err));
-});
-
 change.addEventListener("click",()=>{
 let changedEmail = document.getElementById("changedEmail").value;
     fetch("/api/user/change",{

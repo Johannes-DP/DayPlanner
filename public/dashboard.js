@@ -19,9 +19,9 @@ const description = document.createElement('p');
 
 const img = document.createElement('img');
 
-fetch('http://localhost:3000/api/weather/getWeather')
-  .then((res) => res.json())
-  .then((data) => setParams(data.data));
+//fetch('http://localhost:3000/api/weather/getWeather')
+//.then((res) => res.json())
+//.then((data) => setParams(data.data));
 // .then(data => data.data)
 // .then(console.log(data.data))//{
 //    temperature.innerText += data.temp;
@@ -53,9 +53,9 @@ function setParams(data) {
 
 // img.append(description);
 // h2.append(description);
-src.appendChild(h2);
+/*src.appendChild(h2);
 src.append(img);
 src.append(description);
 src.appendChild(temperature);
 src.append(sunrise);
-src.append(sunset);
+src.append(sunset);*/
