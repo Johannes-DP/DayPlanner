@@ -1,6 +1,7 @@
 const express = require('express');
 const { userObjectValidation } = require('../../helpers/validation');
 const { dataConverter } = require('../../helpers/content-negotiator');
+const { emailObjectValidation } = require('../../helpers/validation');
 
 const User = require('../../models/User');
 
@@ -43,13 +44,36 @@ router.post('/login', async (req, res) => {
 
 router.delete('/delete/:email', async (req, res) => {
   const { email } = req.params;
+
+  if (email !== req.session.email) {
+    return res.status(403).send(dataConverter(req, { message: 'Provided email does not match with session email' }));
+  }
+
   const user = await User.findOneAndDelete({ email });
+
   req.session.destroy();
+
   return res.send(dataConverter(req, user));
 });
 
 router.put('/change', async (req, res) => {
   const { email, changedEmail } = req.body;
+
+  if (email !== req.session.email) {
+    return res.status(403).send(dataConverter(req, { message: 'Provided email does not match with session email' }));
+  }
+
+  const { error } = emailObjectValidation({ email: changedEmail });
+
+  if (error) {
+    return res.status(400).send(dataConverter(req, error.details[0]));
+  }
+
+  const userNewMail = await User.findOne({ email: changedEmail }).exec();
+  if (userNewMail) {
+    return res.status(403).send(dataConverter(req, { message: 'Provided email is already used by another User' }));
+  }
+
   const user = await User.findOneAndUpdate({ email }, { email: changedEmail }, { new: true });
   req.session.email = changedEmail;
 
@@ -58,7 +82,14 @@ router.put('/change', async (req, res) => {
 
 router.patch('/password', async (req, res) => {
   const { email, oldPassword, newPassword } = req.body;
-  console.log(email);
+
+  if (email !== req.session.email) {
+    return res.status(403).send(dataConverter(req, { message: 'Provided email does not match with session email' }));
+  }
+
+  if (!oldPassword || !newPassword) {
+    return res.status(400).send(dataConverter(req, { message: 'Old and New Password need to be provided' }));
+  }
 
   const user = await User.findOne({ email }).exec();
   if (!user) return res.status(403).send(dataConverter(req, { message: 'Unkown User!' }));
@@ -72,7 +103,7 @@ router.patch('/password', async (req, res) => {
   return res.send(dataConverter(req, result));
 });
 
-router.post('/signupLite', async (req, res) => {
+router.post('/lite/signup', async (req, res) => {
   const { email, password } = req.body;
   let user = await User.findOne({ email }).exec();
 
@@ -90,10 +121,10 @@ router.post('/signupLite', async (req, res) => {
 
   req.session.email = email;
 
-  return res.redirect('/dashboardlite');
+  return res.redirect('/lite/dashboard');
 });
 
-router.post('/loginLite', async (req, res) => {
+router.post('/lite/login', async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email }).exec();
@@ -104,33 +135,7 @@ router.post('/loginLite', async (req, res) => {
 
   req.session.email = email;
 
-  return res.redirect('/dashboardlite');
+  return res.redirect('/lite/dashboard');
 });
 
-router.delete('/deleteLite/:email', async (req) => {
-  const { email } = req.params;
-  await User.findOneAndDelete({ email });
-  req.session.destroy();
-});
-
-router.put('/changeLite', async (req, res) => {
-  const { email, changedEmail } = req.body;
-  const user = await User.findOneAndUpdate({ email }, { email: changedEmail }, { new: true });
-  req.session.email = changedEmail;
-
-  return res.send(dataConverter(req, user));
-});
-
-router.patch('/passwordlite', async (req, res) => {
-  const { email, oldPassword, newPassword } = req.body;
-
-  const user = await User.findOne({ email }).exec();
-  const validate = await user.isValidPassword(oldPassword);
-  if (!validate) return res.status(403).send(dataConverter(req, { message: 'Wrong Credentials!' }));
-
-  user.password = newPassword;
-
-  const result = await user.save();
-  return res.send(dataConverter(req, result));
-});
 module.exports = router;

@@ -22,7 +22,7 @@ router.get('/dashboard', isAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, '../private/dashboard.html'));
 });
 
-router.get('/dashboardlite', isAuthenticated, (req, res) => {
+router.get('/lite/dashboard', isAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, '../private/lite/dashboard.html'));
 });
 
@@ -30,7 +30,7 @@ router.get('/profile', isAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, '../private/profile.html'));
 });
 
-router.get('/profilelite', isAuthenticated, (req, res) => {
+router.get('/lite/profile', isAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, '../private/lite/profile.html'));
 });
 
@@ -38,7 +38,7 @@ router.get('/writing', isAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, '../private/writing.html'));
 });
 
-router.get('/writinglite', isAuthenticated, (req, res) => {
+router.get('/lite/writing', isAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, '../private/lite/writing.html'));
 });
 
@@ -46,7 +46,7 @@ router.get('/cooking', isAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, '../private/cooking.html'));
 });
 
-router.get('/cookinglite', isAuthenticated, (req, res) => {
+router.get('/lite/cooking', isAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, '../private/lite/cooking.html'));
 });
 
