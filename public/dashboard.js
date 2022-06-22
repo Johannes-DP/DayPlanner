@@ -20,8 +20,8 @@ const description = document.createElement('p');
 const img = document.createElement('img');
 
 fetch('http://localhost:3000/api/weather/getWeather')
-.then((res) => res.json())
-.then((data) => setParams(data.data));
+  .then((res) => res.json())
+  .then((data) => setParams(data.data));
 
 function setParams(data) {
   temperature.innerText += ` ${data[0].temp}°C`;

@@ -23,7 +23,6 @@ fetch('http://localhost:3000/api/weather/getWeather')
   .then((res) => res.json())
   .then((data) => setParams(data.data));
 
-
 function setParams(data) {
   console.log(data[0].weather.description);
   console.log(data);
@@ -48,7 +47,6 @@ function setParams(data) {
 
   sunset.innerText += ` ${time2}`;
 }
-
 
 src.appendChild(h2);
 src.append(description);
