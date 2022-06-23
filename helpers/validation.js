@@ -9,4 +9,13 @@ const userObjectValidation = (body) => {
   return schema.validate(body);
 };
 
+const emailObjectValidation = (body) => {
+  const schema = Joi.object({
+    email: Joi.string().min(4).email().required(),
+  });
+
+  return schema.validate(body);
+};
+
 module.exports.userObjectValidation = userObjectValidation;
+module.exports.emailObjectValidation = emailObjectValidation;

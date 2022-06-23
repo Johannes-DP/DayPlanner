@@ -14,29 +14,47 @@ change.addEventListener('click', () => {
       email,
       changedEmail,
     }),
+  }).then( async (res) => {
+    const data = await res.json();
+    if (!res.ok) {
+      throw Error(data.message);
+    } else {
+      window.sessionStorage.setItem('email', changedEmail)
+      anker.value = changedEmail
+      window.location.href = '/lite/profile'
+      return data;
+    }
   })
-    .then((res) => res.json())
-    .then(window.sessionStorage.setItem('email', changedEmail))
-    .catch((err) => console.log(err))
-    .then(anker.value = changedEmail)
-    .then(() => window.location.href = '/profilelite');
+  .catch((err) => {
+    alert(err)
+    console.error(err)
+  })
 });
 
 const del = document.getElementById('delete');
 del.addEventListener('click', () => {
   fetch(`/api/user/delete/${email}`, {
     method: 'DELETE',
+  }).then( async (res) => {
+    const data = await res.json();
+    if (!res.ok) {
+      throw Error(data.message);
+    } else {
+      window.location.href = '/'
+      return data;
+    }
   })
-    .then((res) => res.json())
-    .catch((err) => console.log(err))
-    .then(() => window.location.href = '/');
+  .catch((err) => {
+    alert(err)
+    console.error(err)
+  })
 });
 
 const changePw = document.getElementById('passwordChange');
 changePw.addEventListener('click', () => {
   const oldPassword = document.getElementById('password').value;
   const newPassword = document.getElementById('newPassword').value;
-  fetch('/api/user/passwordlite', {
+  fetch('/api/user/password', {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -44,9 +62,18 @@ changePw.addEventListener('click', () => {
       oldPassword,
       newPassword,
     }),
-  })
-    .then((res) => res.json())
-    .catch((err) => console.log(err))
+  }).then( async (res) => {
+    const data = await res.json();
+    if (!res.ok) {
+      throw Error(data.message);
+    } else {
+      return data;
+    }
+    })
+    .catch((err) => {
+      alert(err)
+      console.error(err)
+    })
     .then(() => {
       document.getElementById('password').value = '';
       document.getElementById('newPassword').value = '';

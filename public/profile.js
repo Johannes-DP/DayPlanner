@@ -5,6 +5,20 @@ anker.setAttribute('value', email);
 
 const change = document.getElementById('change');
 
+const info = document.getElementsByClassName('info')[0];
+const createAlert = (message, duration) => {
+  const alert = document.createElement('div');
+  
+  alert.classList.add('alert', 'alert-danger');
+  alert.setAttribute('role', 'alert');
+  alert.innerText = message;
+
+  info.prepend(alert)
+  setTimeout(() => {
+    alert.remove();
+  }, duration);
+};
+
 change.addEventListener('click', () => {
   const changedEmail = document.getElementById('changedEmail').value;
   fetch('/api/user/change', {
@@ -14,22 +28,40 @@ change.addEventListener('click', () => {
       email,
       changedEmail,
     }),
-  })
-    .then((res) => res.json())
-    .then(window.sessionStorage.setItem('email', changedEmail))
-    .catch((err) => console.log(err))
-    .then(anker.value = changedEmail)
-    .then(() => window.location.href = '/profile');
+  }).then( async (res) => {
+      const data = await res.json();
+      if (!res.ok) {
+        throw Error(data.message);
+      } else {
+        window.sessionStorage.setItem('email', changedEmail)
+        anker.value = changedEmail
+        window.location.href = '/profile'
+        return data;
+      }
+    })
+    .catch((err) => {
+      createAlert(err.message, 3500);
+      console.error(err)
+    })
 });
 
 const del = document.getElementById('delete');
 del.addEventListener('click', () => {
   fetch(`/api/user/delete/${email}`, {
     method: 'DELETE',
+  }).then( async (res) => {
+    const data = await res.json();
+    if (!res.ok) {
+      throw Error(data.message);
+    } else {
+      window.location.href = '/'
+      return data;
+    }
   })
-    .then((res) => res.json())
-    .catch((err) => console.log(err))
-    .then(() => window.location.href = '/');
+  .catch((err) => {
+    createAlert(err.message, 3500);
+    console.error(err)
+  })
 });
 
 const changePw = document.getElementById('passwordChange');
@@ -46,9 +78,19 @@ changePw.addEventListener('click', () => {
       newPassword,
     }),
   })
-    .then((res) => res.json())
-    .catch((err) => console.log(err))
-    .then(() => {
+  .then( async (res) => {
+    const data = await res.json();
+    if (!res.ok) {
+      throw Error(data.message);
+    } else {
+      window.location.href = '/profile'
+      return data;
+    }
+  })
+  .catch((err) => {
+    createAlert(err.message, 3500);
+    console.error(err)
+  }).then(() => {
       document.getElementById('password').value = '';
       document.getElementById('newPassword').value = '';
     });
